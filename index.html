@@ -20,7 +20,311 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+:root {
+  --paper: #f5f8fc;
+  --surface: #ffffff;
+  --ink: #111827;
+  --muted: #526273;
+  --cobalt: #1d4ed8;
+  --cobalt-soft: #dce8ff;
+  --line: #d8e2ee;
+  --shadow: 0 18px 50px rgba(32, 54, 86, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(180deg, rgba(220, 232, 255, 0.62) 0, rgba(245, 248, 252, 0) 240px),
+    var(--paper);
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 76px 0 40px;
+}
+
+.masthead {
+  padding: 0 0 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.series-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  color: var(--cobalt);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.bond-mark {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 8px;
+}
+
+.bond-mark::before,
+.bond-mark::after {
+  position: absolute;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.bond-mark::before {
+  top: 1px;
+}
+
+.bond-mark::after {
+  bottom: 1px;
+}
+
+.heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+h1,
+h2,
+p,
+figure {
+  margin: 0;
+}
+
+h1 {
+  max-width: 780px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-weight: 650;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.dek {
+  max-width: 600px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.65;
+}
+
+.count {
+  flex: 0 0 auto;
+  padding-bottom: 6px;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 36px 0 44px;
+}
+
+.signature-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 300px;
+  overflow: hidden;
+  padding: 23px 24px 20px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  box-shadow: 0 0 0 rgba(32, 54, 86, 0);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.signature-card::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--cobalt);
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.72);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.signature-card:hover {
+  border-color: #aebfd4;
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.signature-card:hover::after,
+.signature-card:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.signature-card:focus-visible {
+  outline: 3px solid var(--cobalt-soft);
+  outline-offset: 3px;
+}
+
+.card-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  column-gap: 18px;
+}
+
+.signature-number {
+  color: var(--cobalt);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.open-mark {
+  color: #8191a5;
+  font-size: 1rem;
+  line-height: 1;
+  transition: color 180ms ease;
+}
+
+.signature-card:hover .open-mark {
+  color: var(--cobalt);
+}
+
+h2 {
+  grid-column: 1 / -1;
+  margin-top: 9px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.structure-frame {
+  display: flex;
+  min-height: 190px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 8px 4px;
+}
+
+.structure-frame img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 170px;
+  object-fit: contain;
+}
+
+footer {
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 920px) {
+  .signature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .count {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-shell {
+    width: min(100% - 28px, 520px);
+    padding-top: 42px;
+  }
+
+  .masthead {
+    padding-bottom: 24px;
+  }
+
+  .heading-row {
+    display: block;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 17vw, 4.6rem);
+  }
+
+  .dek {
+    font-size: 0.98rem;
+  }
+
+  .signature-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-top: 24px;
+  }
+
+  .signature-card {
+    min-height: 250px;
+  }
+
+  .structure-frame {
+    min-height: 150px;
+    padding-top: 18px;
+  }
+
+  .structure-frame img {
+    max-height: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .signature-card,
+  .signature-card::after,
+  .open-mark {
+    transition: none;
+  }
+}
+
+</style>
   </head>
   <body>
     <main class="page-shell">
