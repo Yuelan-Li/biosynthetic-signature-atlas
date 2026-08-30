@@ -3,7 +3,7 @@ const { pathToFileURL } = require("node:url");
 const { chromium } = require("playwright");
 
 const pagePath = path.resolve("publications/biosynthetic-signatures/index.html");
-const outputPath = path.resolve("images/og-index.jpg");
+const outputPath = path.resolve("images/og-index-v2.jpg");
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
