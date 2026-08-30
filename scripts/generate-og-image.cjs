@@ -9,7 +9,7 @@ const outputPath = path.resolve("images/og-index.jpg");
   const browser = await chromium.launch({ headless: true });
   try {
     const page = await browser.newPage({
-      viewport: { width: 1200, height: 630 },
+      viewport: { width: 1916, height: 912 },
       deviceScaleFactor: 1,
     });
     await page.goto(pathToFileURL(pagePath).href, { waitUntil: "networkidle" });
